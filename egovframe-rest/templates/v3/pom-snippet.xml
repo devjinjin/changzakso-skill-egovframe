@@ -1,0 +1,23 @@
+<!-- 전자정부 표준프레임워크 3.x 의존성/저장소 설정 예시 (pom.xml 발췌) -->
+<!-- 정확한 버전은 공식 포털의 적용기준/호환성 가이드로 확인할 것. -->
+<repositories>
+    <repository>
+        <id>egovframe</id>
+        <url>https://maven.egovframe.go.kr/maven/</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <!-- 전자정부 실행환경 (패키지 접두사: org.egovframework.rte) -->
+    <dependency>
+        <groupId>org.egovframe.rte</groupId>
+        <artifactId>org.egovframe.rte.fdl.cmmn</artifactId>
+        <version>3.x</version>
+    </dependency>
+    <dependency>
+        <groupId>org.egovframe.rte</groupId>
+        <artifactId>org.egovframe.rte.psl.dataaccess</artifactId>
+        <version>3.x</version>
+    </dependency>
+    <!-- Spring MVC, MyBatis, Jackson(JSON) 등은 실행환경 BOM/조직 표준에 맞춰 추가 -->
+</dependencies>

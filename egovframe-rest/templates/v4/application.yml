@@ -1,0 +1,20 @@
+# 전자정부 4.x (Spring Boot) 설정 예시
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver        # 운영 시 실제 DB 드라이버로 교체
+    url: jdbc:h2:mem:testdb;MODE=Oracle
+    username: sa
+    password:
+
+mybatis:
+  mapper-locations: classpath:mappers/**/*.xml
+  type-aliases-package: egovframework.**.service
+  configuration:
+    map-underscore-to-camel-case: true
+
+# 전자정부 실행환경 관련 추가 설정은 조직 표준/적용기준에 따른다.

@@ -1,0 +1,21 @@
+// 전자정부 표준프레임워크 4.x 의존성/저장소 설정 예시 (build.gradle)
+// 정확한 버전은 공식 포털의 적용기준/호환성 가이드로 확인할 것.
+
+repositories {
+    mavenCentral()
+    // 전자정부 전용 저장소 (실행환경 라이브러리 수신)
+    maven { url 'https://maven.egovframe.go.kr/maven/' }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.x'
+
+    // 전자정부 실행환경 (패키지 접두사: org.egovframe.rte)
+    implementation 'org.egovframe.rte:org.egovframe.rte.fdl.cmmn:4.x'
+    implementation 'org.egovframe.rte:org.egovframe.rte.psl.dataaccess:4.x'
+    implementation 'org.egovframe.rte:org.egovframe.rte.fdl.idgnr:4.x'
+
+    runtimeOnly 'com.h2database:h2'           // 운영 시 실제 DB 드라이버로 교체
+}

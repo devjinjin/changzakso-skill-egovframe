@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 전자정부 4.x: namespace 는 Mapper 인터페이스 FQCN -->
+<mapper namespace="egovframework.example.sample.service.impl.EgovSampleMapper">
+
+    <resultMap id="sample" type="egovframework.example.sample.service.SampleVO">
+        <result property="id"          column="ID"/>
+        <result property="name"        column="NAME"/>
+        <result property="description" column="DESCRIPTION"/>
+        <result property="useYn"       column="USE_YN"/>
+    </resultMap>
+
+    <select id="selectSampleList" parameterType="egovframework.example.sample.service.SampleDefaultVO"
+            resultMap="sample">
+        SELECT ID, NAME, DESCRIPTION, USE_YN
+        FROM SAMPLE
+        <where>
+            <if test="searchKeyword != null and searchKeyword != ''">
+                AND NAME LIKE '%' || #{searchKeyword} || '%'
+            </if>
+        </where>
+        ORDER BY ID DESC
+    </select>
+
+    <select id="selectSampleListTotCnt"
+            parameterType="egovframework.example.sample.service.SampleDefaultVO"
+            resultType="int">
+        SELECT COUNT(1) FROM SAMPLE
+    </select>
+
+    <select id="selectSample" parameterType="egovframework.example.sample.service.SampleVO"
+            resultMap="sample">
+        SELECT ID, NAME, DESCRIPTION, USE_YN FROM SAMPLE WHERE ID = #{id}
+    </select>
+
+    <insert id="insertSample" parameterType="egovframework.example.sample.service.SampleVO">
+        INSERT INTO SAMPLE (ID, NAME, DESCRIPTION, USE_YN)
+        VALUES (#{id}, #{name}, #{description}, #{useYn})
+    </insert>
+
+    <update id="updateSample" parameterType="egovframework.example.sample.service.SampleVO">
+        UPDATE SAMPLE SET NAME = #{name}, DESCRIPTION = #{description}, USE_YN = #{useYn}
+        WHERE ID = #{id}
+    </update>
+
+    <delete id="deleteSample" parameterType="egovframework.example.sample.service.SampleVO">
+        DELETE FROM SAMPLE WHERE ID = #{id}
+    </delete>
+</mapper>
